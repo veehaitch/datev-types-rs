@@ -1265,7 +1265,7 @@ impl TryFrom<&str> for Buchung {
                 buchung.forderungsart = Some(val.to_string());
             }
             if let Some(val) = record.get(91) {
-                buchung.veranlagungsjahr = Some(val.parse().unwrap());
+                buchung.veranlagungsjahr = val.parse().ok();
             }
             if let Some(val) = record.get(92) {
                 buchung.zugeordnete_fälligkeit = Some(val.to_string());

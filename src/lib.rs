@@ -230,16 +230,17 @@ fn test_extf_buchungstapel() {
     let mut buffer = Vec::new();
     f.read_to_end(&mut buffer).unwrap();
     //length in windows encoding
-    assert_eq!(buffer.len(), 21426);
+    assert_eq!(buffer.len(), 21514);
     let (cow, encoding_used, had_errors) = encoding_rs::WINDOWS_1252.decode(&buffer);
     assert_eq!(had_errors, false);
     assert_eq!(encoding_used, encoding_rs::WINDOWS_1252);
     //length in utf-8 encoding
-    assert_eq!(cow.len(), 21447);
+    assert_eq!(cow.len(), 21556);
     let str: String = cow.to_string();
     println!("{}", str);
     println!("done.");
     let _stapel: Buchungsstapel = Buchungsstapel::try_from(str.as_str()).unwrap();
+    println!("{:?}", _stapel);
 }
 
 #[test]
